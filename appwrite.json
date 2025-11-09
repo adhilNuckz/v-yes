@@ -1,0 +1,10 @@
+{
+  "$schema": "https://appwrite.io/schemas/appwrite.json",
+  "projectId": "YOUR_PROJECT_ID",
+  "projectName": "v-yes",
+  "settings": {
+    "buildCommand": "npm install && npm run build",
+    "outputDirectory": "dist",
+    "rootDirectory": "."
+  }
+}
