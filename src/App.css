@@ -1,9 +1,358 @@
 @import "tailwindcss";
 
+/* Smooth theme transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Custom Color Palette - Dark Mode (Default) */
+:root {
+  --color-primary: #FF9D00;
+  --color-primary-dark: #CC7D00;
+  --color-primary-light: #FFB733;
+  --color-bg-black: #000000;
+  --color-bg-dark: #0A0A0A;
+  --color-bg-card: rgba(255, 157, 0, 0.03);
+  --color-text: #ffffff;
+  --color-text-secondary: #9ca3af;
+  --color-border: rgba(255, 157, 0, 0.2);
+}
+
+/* Light Mode Variables */
+:root.light {
+  --color-bg-black: #ffffff;
+  --color-bg-dark: #fafafa;
+  --color-bg-card: rgba(255, 157, 0, 0.08);
+  --color-text: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-border: rgba(255, 157, 0, 0.4);
+}
+
+/* Remove default details marker */
 summary::-webkit-details-marker {
   display: none
 }
 
+/* Glassmorphism Effect - Dark Mode */
+.glass {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 157, 0, 0.1);
+}
+
+.glass-strong {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 157, 0, 0.2);
+}
+
+/* Glassmorphism Effect - Light Mode */
+:root.light .glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 157, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+:root.light .glass-strong {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 157, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Orange Glow Effect */
+.glow-orange {
+  box-shadow: 0 0 20px rgba(255, 157, 0, 0.3);
+}
+
+.glow-orange-strong {
+  box-shadow: 0 0 30px rgba(255, 157, 0, 0.5),
+              0 0 60px rgba(255, 157, 0, 0.3);
+}
+
+/* Animated Background - Dark Mode */
+.animated-bg {
+  background: linear-gradient(135deg, #000000 0%, #0A0A0A 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-bg::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle, rgba(255, 157, 0, 0.05) 0%, transparent 70%);
+  animation: pulse 15s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* Animated Background - Light Mode */
+:root.light .animated-bg {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+}
+
+:root.light .animated-bg::before {
+  background: radial-gradient(circle, rgba(255, 157, 0, 0.12) 0%, rgba(255, 183, 51, 0.05) 50%, transparent 70%);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(10%, 10%) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Light mode - make orbs more visible */
+:root.light .float-animation {
+  opacity: 0.2 !important;
+  filter: brightness(1.2);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* Slide In Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideInUp {
+  animation: slideInUp 0.4s ease-out;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s ease-out;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Orange Gradient Text */
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FF9D00 0%, #FFB733 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Light Mode Text Colors */
+:root.light .text-gray-300 {
+  color: #374151;
+}
+
+:root.light .text-gray-400 {
+  color: #6b7280;
+}
+
+:root.light .text-gray-500 {
+  color: #9ca3af;
+}
+
+:root.light .text-white {
+  color: #1f2937;
+}
+
+:root.light .placeholder-gray-500::placeholder {
+  color: #9ca3af;
+}
+
+/* Light Mode Glow Effects */
+:root.light .glow-orange {
+  filter: drop-shadow(0 0 8px rgba(255, 157, 0, 0.4));
+}
+
+:root.light .glow-orange-strong {
+  box-shadow: 0 0 25px rgba(255, 157, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Light Mode Checker Background */
+:root.light .checker-background {
+  background-image: 
+    linear-gradient(45deg, #f3f4f6 25%, transparent 25%),
+    linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+    linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+}
+
+/* Light Mode Button Improvements */
+:root.light button.glass {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+:root.light button.glass:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Hover Glow Animation */
+@keyframes hoverGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255, 157, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 157, 0, 0.6);
+  }
+}
+
+.hover-glow:hover {
+  animation: hoverGlow 2s ease-in-out infinite;
+}
+
+/* Rotating Border */
+/* Rotating border removed - replaced with simple bottom border */
+.rotating-border {
+  position: relative;
+  background: linear-gradient(90deg, transparent, #FF9D00, transparent);
+  height: 2px;
+}
+
+/* Card Hover Effect */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(255, 157, 0, 0.2);
+}
+
+:root.light .card-hover:hover {
+  box-shadow: 0 20px 40px rgba(255, 157, 0, 0.25), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.glow-orange-strong {
+  box-shadow: 0 0 30px rgba(255, 157, 0, 0.5);
+}
+
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 40px rgba(255, 157, 0, 0.7), 0 0 80px rgba(255, 157, 0, 0.4);
+  transform: scale(1.02);
+}
+
+:root.light .hover-glow:hover {
+  box-shadow: 0 0 30px rgba(255, 157, 0, 0.5), 0 0 60px rgba(255, 157, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+:root.light .spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #FF9D00;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Loading Spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 3px solid rgba(255, 157, 0, 0.1);
+  border-top-color: #FF9D00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Checker background for auth pages */
 .checker-background::before {
   content: "";
   position: absolute;
@@ -11,10 +360,11 @@ summary::-webkit-details-marker {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: linear-gradient(#e6e6e690 1px, transparent 1px),
-  linear-gradient(90deg, #e6e6e690 1px, transparent 1px);
-  background-size: 3.7em 3.7em;
-  mask-image: radial-gradient(ellipse at 50% 40%, black 0%, transparent 55%);
+  background-image: 
+    linear-gradient(rgba(255, 157, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 157, 0, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse at 50% 50%, black 0%, transparent 70%);
   z-index: -1;
   background-position-x: center;
 }
